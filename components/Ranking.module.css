@@ -1,0 +1,25 @@
+.ranking {
+  margin-top: 9.6rem;
+}
+
+.secondary {
+  text-align: center;
+}
+
+.text {
+  font-size: 1.8rem;
+  line-height: 1.6;
+}
+
+.number {
+  font-size: 7.4rem;
+  letter-spacing: -5px;
+  color: #94d82d;
+  margin-bottom: 1rem;
+}
+
+.obs {
+  margin-top: 2.4rem;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}

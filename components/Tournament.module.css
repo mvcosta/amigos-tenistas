@@ -1,0 +1,33 @@
+.tournament {
+  margin-top: 15rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  column-gap: 6.4rem;
+  align-content: center;
+}
+
+.secondary {
+  text-align: center;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 2.4rem;
+  line-height: 1.8;
+}
+
+.image-box {
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  /* height: 85vh; */
+  border-radius: 15px;
+}

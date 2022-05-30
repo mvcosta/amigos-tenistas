@@ -1,0 +1,25 @@
+.footer {
+  /* border-top: 1px solid #eee; */
+  margin: 13rem auto 2.5rem auto;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #54697c;
+  max-width: 100rem;
+  padding: 0 3.2rem;
+}
+
+.container {
+  max-width: 100rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.2rem;
+}
+
+.list {
+  /* margin-left: 3.2rem; */
+  list-style: none;
+  display: flex;
+  gap: 3.2rem;
+  align-items: center;
+}

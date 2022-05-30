@@ -1,0 +1,31 @@
+.nav:link,
+.nav:visited {
+  display: inline-block;
+  text-decoration: none;
+
+  border: none;
+
+  font-family: inherit;
+  color: inherit;
+
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav:hover,
+.nav:active {
+  color: #94d82d;
+  color: #68971f;
+}
+
+.logo:link,
+.logo:visited {
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+
+  color: inherit;
+
+  cursor: pointer;
+  transition: all 0.3s;
+}

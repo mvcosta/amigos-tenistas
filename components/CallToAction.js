@@ -1,15 +1,16 @@
+import React from "react";
+
 import Heading from "./ui/Heading";
 import classes from "./CallToAction.module.css";
 import Button from "./ui/Button";
 import Card from "./ui/Card";
 
-function CallToAction() {
+const CallToAction = React.forwardRef((props, ref) => {
   return (
-    <section className={`${classes.cta} container`}>
+    <section ref={ref} className={`${classes.cta} container`}>
       <Card>
         <div>
           <Heading type="h2" className="margin-bottom-lg">
-            {" "}
             Entre para o Ranking
           </Heading>
         </div>
@@ -44,6 +45,6 @@ function CallToAction() {
       </Card>
     </section>
   );
-}
+});
 
 export default CallToAction;

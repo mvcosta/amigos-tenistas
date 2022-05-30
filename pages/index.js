@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React, { useRef, Fragment } from "react";
 import Hero from "../components/Hero";
 import Ranking from "../components/Ranking";
 import Background from "../components/layout/Background";
@@ -8,15 +8,19 @@ import CallToAction from "../components/CallToAction";
 import Footer from "../components/Footer";
 
 function HomePage() {
+  const ctaRef = useRef(null);
+
+  console.log(ctaRef);
+
   return (
     <Fragment>
       <Background>
         <MainHeader />
-        <Hero />
+        <Hero ctaRef={ctaRef} />
       </Background>
       <Ranking />
       <Tournament />
-      <CallToAction />
+      <CallToAction ref={ctaRef} />
       <Footer />
     </Fragment>
   );

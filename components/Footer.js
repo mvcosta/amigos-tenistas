@@ -7,17 +7,17 @@ function Footer() {
     <section className={classes.footer}>
       <div className={classes.container}>
         <div>
-          <NavLink type="NAV">
-            <InstagramIcon />
-          </NavLink>
-        </div>
-        <div>
           <NavLink type="LOGO">Amigos Tenistas&trade;</NavLink>
         </div>
         <div>
           <ul className={classes.list}>
             <li>
               <NavLink type="LOGO">Contato</NavLink>
+            </li>
+            <li>
+              <NavLink type="NAV">
+                <InstagramIcon />
+              </NavLink>
             </li>
           </ul>
         </div>

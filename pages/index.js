@@ -9,16 +9,25 @@ import Footer from "../components/Footer";
 
 function HomePage() {
   const ctaRef = useRef(null);
+  const rankingRef = useRef(null);
 
-  console.log(ctaRef);
+  const ctaHandler = (event) => {
+    event.preventDefault();
+    ctaRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const rankingHandler = (event) => {
+    event.preventDefault();
+    rankingRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <Fragment>
       <Background>
-        <MainHeader />
-        <Hero ctaRef={ctaRef} />
+        <MainHeader onCta={ctaHandler} />
+        <Hero onCta={ctaHandler} onRanking={rankingHandler} />
       </Background>
-      <Ranking />
+      <Ranking ref={rankingRef} />
       <Tournament />
       <CallToAction ref={ctaRef} />
       <Footer />

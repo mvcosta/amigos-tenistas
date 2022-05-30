@@ -6,7 +6,7 @@ function NavLink(props) {
 
   if (props.type === "NAV") {
     return (
-      <a href="#" className={navLinkClasses}>
+      <a href={props.href} className={navLinkClasses}>
         {props.children}
       </a>
     );

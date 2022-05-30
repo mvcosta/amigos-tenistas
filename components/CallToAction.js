@@ -10,18 +10,18 @@ const CallToAction = React.forwardRef((props, ref) => {
     <section ref={ref} className={`${classes.cta} container`}>
       <Card>
         <div>
-          <Heading type="h2" className="margin-bottom-lg">
-            Entre para o Ranking
+          <Heading type="h2" className="margin-bottom-md">
+            Entre no Ranking
           </Heading>
         </div>
         <div>
           <form action="#">
             <div>
-              <label htmlFor="name">Nome Completo:</label>
-              <input type="text" placeholder="Geovandame" />
+              <label htmlFor="name">Atleta</label>
+              <input type="text" placeholder="Digite seu nome completo" />
             </div>
             <div>
-              <label htmlFor="number">Celular:</label>
+              <label htmlFor="number">Celular</label>
               <input type="tel" placeholder="(95) 99999-9999" />
             </div>
             <div>

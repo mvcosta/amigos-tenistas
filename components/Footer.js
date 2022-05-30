@@ -15,7 +15,10 @@ function Footer() {
               <NavLink type="LOGO">Contato</NavLink>
             </li>
             <li>
-              <NavLink type="NAV">
+              <NavLink
+                href="https://www.instagram.com/amigos_tenistasbv/"
+                type="NAV"
+              >
                 <InstagramIcon />
               </NavLink>
             </li>

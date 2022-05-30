@@ -3,7 +3,7 @@ import classes from "./MainHeader.module.css";
 import Button from "../ui/Button.js";
 import NavLink from "../ui/NavLink";
 
-function MainHeader() {
+function MainHeader(props) {
   return (
     <header className={classes.container}>
       <div>
@@ -12,13 +12,17 @@ function MainHeader() {
       <nav>
         <ul className={classes.list}>
           <li>
-            <NavLink type="NAV">Eventos</NavLink>
+            <NavLink href="#" type="NAV">
+              Eventos
+            </NavLink>
           </li>
           <li>
-            <NavLink type="NAV">Regras</NavLink>
+            <NavLink href="#" type="NAV">
+              Regras
+            </NavLink>
           </li>
           <li>
-            <Button type="full" size="18px">
+            <Button onClick={props.onCta} type="full" size="18px">
               Entre no ranking
             </Button>
           </li>

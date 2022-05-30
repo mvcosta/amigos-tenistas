@@ -1,10 +1,11 @@
 import Heading from "./ui/Heading";
 
 import classes from "./Ranking.module.css";
+import React from "react";
 
-function Ranking() {
+const Ranking = React.forwardRef((props, ref) => {
   return (
-    <section className={`${classes.ranking} container`}>
+    <section ref={ref} className={`${classes.ranking} container`}>
       <div className={classes.secondary}>
         <Heading type="h2">Como o ranking funciona:</Heading>
       </div>
@@ -53,6 +54,6 @@ function Ranking() {
       </p>
     </section>
   );
-}
+});
 
 export default Ranking;

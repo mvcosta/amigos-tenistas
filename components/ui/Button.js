@@ -4,6 +4,7 @@ function Button(props) {
   const btnFontSize = `btn--${props.size}`;
   const btnType = `btn--${props.type}`;
   const btnClasses = `${classes.btn} ${classes[btnType]} ${classes[btnFontSize]} ${props.className}`;
+
   return (
     <a onClick={props.onClick} href="" className={btnClasses}>
       {props.children}

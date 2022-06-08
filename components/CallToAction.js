@@ -1,11 +1,49 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import Heading from "./ui/Heading";
 import classes from "./CallToAction.module.css";
 import Button from "./ui/Button";
 import Card from "./ui/Card";
+import useInput from "../hooks/use-input";
 
 const CallToAction = React.forwardRef((props, ref) => {
+  const {
+    value: enteredName,
+    isValid: enteredNameIsValid,
+    hasError: nameInputHasError,
+    valueChangeHandler: nameChangedHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: resetNameInput,
+  } = useInput((value) => value.trim() !== "");
+
+  const {
+    value: enteredNumber,
+    isValid: enteredNumberIsValid,
+    hasError: numberInputHasError,
+    valueChangeHandler: numberChangedHandler,
+    inputBlurHandler: numberBlurHandler,
+    reset: resetNumberInput,
+  } = useInput((value) => value.trim() !== "");
+
+  let formIsValid = false;
+
+  if (enteredNameIsValid && enteredNumberIsValid) {
+    formIsValid = true;
+  }
+
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
+    if (!formIsValid) {
+      console.log("Form Invalid!");
+      console.log(enteredNameIsValid, enteredNumberIsValid);
+      return;
+    }
+    console.log("Submitted");
+    console.log(enteredName, enteredNumber);
+    resetNumberInput();
+    resetNameInput();
+  };
+
   return (
     <section ref={ref} className={`${classes.cta} container`}>
       <Card>
@@ -15,14 +53,36 @@ const CallToAction = React.forwardRef((props, ref) => {
           </Heading>
         </div>
         <div>
-          <form action="#">
+          <form onSubmit={formSubmissionHandler}>
             <div>
-              <label htmlFor="name">Atleta</label>
-              <input type="text" placeholder="Digite seu nome completo" />
+              <label
+                htmlFor="name"
+                className={nameInputHasError ? classes.error : ""}
+              >
+                Atleta
+              </label>
+              <input
+                type="text"
+                placeholder="Digite seu nome completo"
+                value={enteredName}
+                onChange={nameChangedHandler}
+                onBlur={nameBlurHandler}
+              />
             </div>
             <div>
-              <label htmlFor="number">Celular</label>
-              <input type="tel" placeholder="(95) 99999-9999" />
+              <label
+                htmlFor="number"
+                className={numberInputHasError ? classes.error : ""}
+              >
+                Celular
+              </label>
+              <input
+                type="tel"
+                placeholder="(95) 99999-9999"
+                value={enteredNumber}
+                onChange={numberChangedHandler}
+                onBlur={numberBlurHandler}
+              />
             </div>
             <div>
               <label htmlFor="experience">
@@ -37,9 +97,7 @@ const CallToAction = React.forwardRef((props, ref) => {
                 <option value="3-year-plus">Mais de 3 anos</option>
               </select>
             </div>
-            <Button type="full" size="20px" className="margin-top-sm">
-              Inscreva-se
-            </Button>
+            <button>Submit</button>
           </form>
         </div>
       </Card>

@@ -1,12 +1,15 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 
 import Heading from "./ui/Heading";
 import classes from "./CallToAction.module.css";
 import Button from "./ui/Button";
 import Card from "./ui/Card";
 import useInput from "../hooks/use-input";
+import useHttp from "../hooks/use-http";
 
 const CallToAction = React.forwardRef((props, ref) => {
+  const { isLoading, error, sendRequest: postPlayer } = useHttp();
+
   const {
     value: enteredName,
     isValid: enteredNameIsValid,
@@ -25,23 +28,44 @@ const CallToAction = React.forwardRef((props, ref) => {
     reset: resetNumberInput,
   } = useInput((value) => value.trim() !== "");
 
+  const {
+    value: enteredExperience,
+    isValid: enteredExperienceIsValid,
+    hasError: experienceInputHasError,
+    valueChangeHandler: experienceChangedHandler,
+    inputBlurHandler: experienceBlurHandler,
+    reset: resetExperienceInput,
+  } = useInput((value) => value.trim() !== "");
+
   let formIsValid = false;
 
-  if (enteredNameIsValid && enteredNumberIsValid) {
+  if (enteredNameIsValid && enteredNumberIsValid && enteredExperienceIsValid) {
     formIsValid = true;
   }
 
-  const formSubmissionHandler = (event) => {
+  const formSubmissionHandler = async (event) => {
     event.preventDefault();
     if (!formIsValid) {
-      console.log("Form Invalid!");
-      console.log(enteredNameIsValid, enteredNumberIsValid);
       return;
     }
-    console.log("Submitted");
-    console.log(enteredName, enteredNumber);
+
+    const player = {
+      name: enteredName,
+      number: enteredNumber,
+      experience: enteredExperience,
+    };
+    const playerResponse = await postPlayer({
+      url: "http://localhost:8080/player",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: player,
+    });
+
     resetNumberInput();
     resetNameInput();
+    resetExperienceInput();
   };
 
   return (
@@ -51,6 +75,8 @@ const CallToAction = React.forwardRef((props, ref) => {
           <Heading type="h2" className="margin-bottom-md">
             Entre no Ranking
           </Heading>
+          {error && <p>{error}</p>}
+          {isLoading && <p>Sending Data</p>}
         </div>
         <div>
           <form onSubmit={formSubmissionHandler}>
@@ -88,7 +114,14 @@ const CallToAction = React.forwardRef((props, ref) => {
               <label htmlFor="experience">
                 Qual a sua experiência no tênis?
               </label>
-              <select name="experience" id="experience">
+              <select
+                name="experience"
+                id="experience"
+                value={enteredExperience}
+                onChange={experienceChangedHandler}
+                onBlur={experienceBlurHandler}
+                className={experienceInputHasError ? classes.error : ""}
+              >
                 <option value="">Selecione uma das opções:</option>
                 <option value="none">Nunca joguei</option>
                 <option value="1-year">Menos de 1 ano</option>

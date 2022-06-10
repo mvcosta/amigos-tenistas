@@ -22,7 +22,7 @@ function MainHeader(props) {
             </NavLink>
           </li>
           <li>
-            <Button onClick={props.onCta} type="full" size="18px">
+            <Button onClick={props.onCta} fill="full" size="18px">
               Entre no ranking
             </Button>
           </li>

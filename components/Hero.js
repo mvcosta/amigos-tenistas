@@ -12,13 +12,13 @@ function Hero(props) {
         </Heading>
         <Button
           onClick={props.onCta}
-          type="full"
+          fill="full"
           size="20px"
           className="margin-right-sm"
         >
           Entre no ranking
         </Button>
-        <Button onClick={props.onRanking} type="outline" size="20px">
+        <Button onClick={props.onRanking} fill="outline" size="20px">
           Saiba mais ⬇
         </Button>
       </div>

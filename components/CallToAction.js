@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 
 import Heading from "./ui/Heading";
 import classes from "./CallToAction.module.css";
@@ -6,6 +6,10 @@ import Button from "./ui/Button";
 import Card from "./ui/Card";
 import useInput from "../hooks/use-input";
 import useHttp from "../hooks/use-http";
+import {
+  formatPhoneNumber,
+  phoneNumberValidation,
+} from "../functions/phoneNumberHelper";
 
 const CallToAction = React.forwardRef((props, ref) => {
   const { isLoading, error, sendRequest: postPlayer } = useHttp();
@@ -26,7 +30,7 @@ const CallToAction = React.forwardRef((props, ref) => {
     valueChangeHandler: numberChangedHandler,
     inputBlurHandler: numberBlurHandler,
     reset: resetNumberInput,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput(phoneNumberValidation, formatPhoneNumber);
 
   const {
     value: enteredExperience,
@@ -130,7 +134,14 @@ const CallToAction = React.forwardRef((props, ref) => {
                 <option value="3-year-plus">Mais de 3 anos</option>
               </select>
             </div>
-            <button>Submit</button>
+            <Button
+              type="BTN"
+              fill="full"
+              size="20px"
+              className="margin-top-sm"
+            >
+              Inscreva-se
+            </Button>
           </form>
         </div>
       </Card>

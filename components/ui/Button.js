@@ -2,11 +2,17 @@ import classes from "./Button.module.css";
 
 function Button(props) {
   const btnFontSize = `btn--${props.size}`;
-  const btnType = `btn--${props.type}`;
-  const btnClasses = `${classes.btn} ${classes[btnType]} ${classes[btnFontSize]} ${props.className}`;
+  const btnFill = `btn--${props.fill}`;
+  const btnLinkClasses = `${classes["btn"]} ${classes[btnFill]} 
+  ${classes[btnFontSize]} ${props.className}`;
+  const btnClasses = `${classes.button} ${classes[btnFontSize]}`;
+
+  if (props.type === "BTN") {
+    return <button className={btnClasses}>{props.children}</button>;
+  }
 
   return (
-    <a onClick={props.onClick} href="" className={btnClasses}>
+    <a onClick={props.onClick} href="" className={btnLinkClasses}>
       {props.children}
     </a>
   );

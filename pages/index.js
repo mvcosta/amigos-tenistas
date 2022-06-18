@@ -23,6 +23,7 @@ function HomePage() {
 
   return (
     <Fragment>
+      <div id="overlays"></div>
       <Background>
         <MainHeader onCta={ctaHandler} />
         <Hero onCta={ctaHandler} onRanking={rankingHandler} />

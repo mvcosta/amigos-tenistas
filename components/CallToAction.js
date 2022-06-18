@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Heading from "./ui/Heading";
 import classes from "./CallToAction.module.css";
 import Button from "./ui/Button";
 import Card from "./ui/Card";
+import Modal from "./ui/Modal";
+
 import useInput from "../hooks/use-input";
 import useHttp from "../hooks/use-http";
 import {
@@ -13,6 +15,8 @@ import {
 
 const CallToAction = React.forwardRef((props, ref) => {
   const { isLoading, error, sendRequest: postPlayer } = useHttp();
+
+  const [modalIsShown, setmodalIsShown] = useState(false);
 
   const {
     value: enteredName,
@@ -70,6 +74,11 @@ const CallToAction = React.forwardRef((props, ref) => {
     resetNumberInput();
     resetNameInput();
     resetExperienceInput();
+    setmodalIsShown(true);
+  };
+
+  const hideModalHandler = () => {
+    setmodalIsShown(false);
   };
 
   return (
@@ -85,33 +94,25 @@ const CallToAction = React.forwardRef((props, ref) => {
         <div>
           <form onSubmit={formSubmissionHandler}>
             <div>
-              <label
-                htmlFor="name"
-                className={nameInputHasError ? classes.error : ""}
-              >
-                Atleta
-              </label>
+              <label htmlFor="name">Atleta</label>
               <input
                 type="text"
                 placeholder="Digite seu nome completo"
                 value={enteredName}
                 onChange={nameChangedHandler}
                 onBlur={nameBlurHandler}
+                className={nameInputHasError ? classes.error : ""}
               />
             </div>
             <div>
-              <label
-                htmlFor="number"
-                className={numberInputHasError ? classes.error : ""}
-              >
-                Celular
-              </label>
+              <label htmlFor="number">Celular</label>
               <input
                 type="tel"
                 placeholder="(95) 99999-9999"
                 value={enteredNumber}
                 onChange={numberChangedHandler}
                 onBlur={numberBlurHandler}
+                className={numberInputHasError ? classes.error : ""}
               />
             </div>
             <div>
@@ -145,6 +146,13 @@ const CallToAction = React.forwardRef((props, ref) => {
           </form>
         </div>
       </Card>
+      {modalIsShown && (
+        <Modal onClose={hideModalHandler}>
+          <p className={classes.cta}>
+            Obrigado por se inscrever no Ranking dos Amigos Tenistas!
+          </p>
+        </Modal>
+      )}
     </section>
   );
 });

@@ -53,9 +53,10 @@ const CallToAction = React.forwardRef((props, ref) => {
 
   const formSubmissionHandler = async (event) => {
     event.preventDefault();
-    if (!formIsValid) {
-      return;
-    }
+    nameBlurHandler();
+    numberBlurHandler();
+    experienceBlurHandler();
+    if (!formIsValid) return;
 
     setmodalIsShown(true);
     const player = {
@@ -74,6 +75,8 @@ const CallToAction = React.forwardRef((props, ref) => {
   };
 
   const hideModalHandler = () => {
+    if (isLoading) return;
+
     setmodalIsShown(false);
     if (!error) {
       resetNumberInput();
@@ -87,13 +90,13 @@ const CallToAction = React.forwardRef((props, ref) => {
     <section ref={ref} className={`${classes.cta} container`}>
       <Card>
         <div>
-          <Heading type="h2" className="margin-bottom-md">
+          <Heading type="h2" className="margin-bottom-lg">
             Entre no Ranking
           </Heading>
         </div>
         <div>
           <form onSubmit={formSubmissionHandler}>
-            <div>
+            <div className="margin-bottom-md relative">
               <label htmlFor="name">Atleta</label>
               <input
                 type="text"
@@ -103,8 +106,13 @@ const CallToAction = React.forwardRef((props, ref) => {
                 onBlur={nameBlurHandler}
                 className={nameInputHasError ? classes.error : ""}
               />
+              {nameInputHasError && (
+                <p className={classes["error-text"]}>
+                  Por favor, preencha seu nome
+                </p>
+              )}
             </div>
-            <div>
+            <div className="margin-bottom-md">
               <label htmlFor="number">Celular</label>
               <input
                 type="tel"
@@ -114,8 +122,13 @@ const CallToAction = React.forwardRef((props, ref) => {
                 onBlur={numberBlurHandler}
                 className={numberInputHasError ? classes.error : ""}
               />
+              {numberInputHasError && (
+                <p className={classes["error-text"]}>
+                  Por favor, utilize um número de celular válido
+                </p>
+              )}
             </div>
-            <div>
+            <div className="margin-bottom-md">
               <label htmlFor="experience">
                 Qual a sua experiência no tênis?
               </label>
@@ -134,6 +147,11 @@ const CallToAction = React.forwardRef((props, ref) => {
                 <option value="Entre 2 e 3 anos">Entre 2 e 3 anos</option>
                 <option value="Mais de 3 anos">Mais de 3 anos</option>
               </select>
+              {experienceInputHasError && (
+                <p className={classes["error-text"]}>
+                  Por favor, selecione a sua experiência
+                </p>
+              )}
             </div>
             <Button
               type="BTN"

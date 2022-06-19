@@ -8,7 +8,7 @@ function Tournament() {
       <div className={classes.grid}>
         <div className={classes.text}>
           <div className={classes.secondary}>
-            <Heading type="h2" className="margin-bottom-md">
+            <Heading type="h2" className="margin-bottom-lg">
               Campeonatos
             </Heading>
           </div>

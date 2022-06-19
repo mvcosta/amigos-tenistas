@@ -86,16 +86,28 @@ body {
   margin-top: 1.6rem !important;
 }
 
+.margin-top-md {
+  margin-top: 3rem !important;
+}
+
 .margin-right-sm {
   margin-right: 1.6rem !important;
 }
 
 .margin-bottom-md {
+  margin-bottom: 3.8rem !important;
+}
+
+.margin-bottom-lg {
   margin-bottom: 5.2rem !important;
 }
 
 .color-green {
   color: #94d82d !important;
+}
+
+.relative {
+  position: relative;
 }
 
 .rules {

@@ -5,7 +5,7 @@ function Button(props) {
   const btnFill = `btn--${props.fill}`;
   const btnLinkClasses = `${classes["btn"]} ${classes[btnFill]} 
   ${classes[btnFontSize]} ${props.className}`;
-  const btnClasses = `${classes.button} ${classes[btnFontSize]}`;
+  const btnClasses = `${classes.button} ${classes[btnFontSize]} ${props.className}`;
 
   if (props.type === "BTN" && props.onClick) {
     return (

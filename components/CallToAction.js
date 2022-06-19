@@ -14,7 +14,12 @@ import {
 } from "../functions/phoneNumberHelper";
 
 const CallToAction = React.forwardRef((props, ref) => {
-  const { isLoading, error, sendRequest: postPlayer } = useHttp();
+  const {
+    isLoading,
+    error,
+    errorStatusCode,
+    sendRequest: postPlayer,
+  } = useHttp();
 
   const [modalIsShown, setmodalIsShown] = useState(false);
 
@@ -56,7 +61,7 @@ const CallToAction = React.forwardRef((props, ref) => {
     nameBlurHandler();
     numberBlurHandler();
     experienceBlurHandler();
-    if (!formIsValid) return;
+    // if (!formIsValid) return;
 
     setmodalIsShown(true);
     const player = {
@@ -99,6 +104,8 @@ const CallToAction = React.forwardRef((props, ref) => {
             <div className="margin-bottom-md relative">
               <label htmlFor="name">Atleta</label>
               <input
+                name="name"
+                id="name"
                 type="text"
                 placeholder="Digite seu nome completo"
                 value={enteredName}
@@ -115,6 +122,8 @@ const CallToAction = React.forwardRef((props, ref) => {
             <div className="margin-bottom-md">
               <label htmlFor="number">Celular</label>
               <input
+                name="number"
+                id="number"
                 type="tel"
                 placeholder="(95) 99999-9999"
                 value={enteredNumber}
@@ -168,6 +177,7 @@ const CallToAction = React.forwardRef((props, ref) => {
         <CallToActionModal
           onClose={hideModalHandler}
           error={error}
+          errorStatusCode={errorStatusCode}
           isLoading={isLoading}
         />
       )}

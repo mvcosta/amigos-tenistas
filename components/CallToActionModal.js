@@ -5,18 +5,25 @@ import Modal from "./ui/Modal";
 
 const CallToActionModal = (props) => {
   const didSubmit = !props.error && !props.isLoading;
+  const errorServer = props.error && props.errorStatusCode;
+  const errorSending = props.error && !errorServer && !props.isLoading;
 
   return (
     <Modal onClose={props.onClose}>
       <div className={classes.ctam}>
         {props.isLoading && <p>Realizando inscrição...</p>}
-        {props.error && (
+        {errorSending && (
           <div>
             <p>
               Desculpe, não conseguimos enviar sua inscrição no momento. Tente
               novamente mais tarde.
             </p>
             <p>Erro: {props.error}!</p>
+          </div>
+        )}
+        {errorServer && (
+          <div>
+            <p>{props.error}!</p>
           </div>
         )}
         {didSubmit && (

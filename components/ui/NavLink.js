@@ -14,7 +14,7 @@ function NavLink(props) {
 
   if (props.type === "LOGO") {
     return (
-      <a href="#" className={logoLinkClasses}>
+      <a onClick={props.onClick} href={props.href} className={logoLinkClasses}>
         {props.children}
       </a>
     );

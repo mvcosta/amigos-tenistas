@@ -4,7 +4,7 @@ import Heading from "./ui/Heading";
 import classes from "./CallToAction.module.css";
 import Button from "./ui/Button";
 import Card from "./ui/Card";
-import Modal from "./ui/Modal";
+import CallToActionModal from "./CallToActionModal";
 
 import useInput from "../hooks/use-input";
 import useHttp from "../hooks/use-http";
@@ -57,6 +57,7 @@ const CallToAction = React.forwardRef((props, ref) => {
       return;
     }
 
+    setmodalIsShown(true);
     const player = {
       name: enteredName,
       number: enteredNumber,
@@ -70,15 +71,16 @@ const CallToAction = React.forwardRef((props, ref) => {
       method: "POST",
       body: player,
     });
-
-    resetNumberInput();
-    resetNameInput();
-    resetExperienceInput();
-    setmodalIsShown(true);
   };
 
   const hideModalHandler = () => {
     setmodalIsShown(false);
+    if (!error) {
+      resetNumberInput();
+      resetNameInput();
+      resetExperienceInput();
+      props.onRanking();
+    }
   };
 
   return (
@@ -88,8 +90,6 @@ const CallToAction = React.forwardRef((props, ref) => {
           <Heading type="h2" className="margin-bottom-md">
             Entre no Ranking
           </Heading>
-          {error && <p>{error}</p>}
-          {isLoading && <p>Sending Data</p>}
         </div>
         <div>
           <form onSubmit={formSubmissionHandler}>
@@ -128,11 +128,11 @@ const CallToAction = React.forwardRef((props, ref) => {
                 className={experienceInputHasError ? classes.error : ""}
               >
                 <option value="">Selecione uma das opções:</option>
-                <option value="none">Nunca joguei</option>
-                <option value="1-year">Menos de 1 ano</option>
-                <option value="2-year">Entre 1 e 2 anos</option>
-                <option value="3-year">Entre 2 e 3 anos</option>
-                <option value="3-year-plus">Mais de 3 anos</option>
+                <option value="Nunca joguei">Nunca joguei</option>
+                <option value="Menos de 1 ano">Menos de 1 ano</option>
+                <option value="Entre 1 e 2 anos">Entre 1 e 2 anos</option>
+                <option value="Entre 2 e 3 anos">Entre 2 e 3 anos</option>
+                <option value="Mais de 3 anos">Mais de 3 anos</option>
               </select>
             </div>
             <Button
@@ -147,11 +147,11 @@ const CallToAction = React.forwardRef((props, ref) => {
         </div>
       </Card>
       {modalIsShown && (
-        <Modal onClose={hideModalHandler}>
-          <p className={classes.cta}>
-            Obrigado por se inscrever no Ranking dos Amigos Tenistas!
-          </p>
-        </Modal>
+        <CallToActionModal
+          onClose={hideModalHandler}
+          error={error}
+          isLoading={isLoading}
+        />
       )}
     </section>
   );

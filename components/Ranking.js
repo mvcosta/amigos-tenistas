@@ -1,7 +1,8 @@
-import Heading from "./ui/Heading";
+import React from "react";
 
 import classes from "./Ranking.module.css";
-import React from "react";
+
+import Heading from "./ui/Heading";
 
 const Ranking = React.forwardRef((props, ref) => {
   return (

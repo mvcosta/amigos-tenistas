@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import classes from "./Hero.module.css";
 import Button from "./ui/Button";
 import Heading from "./ui/Heading";

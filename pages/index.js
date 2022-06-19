@@ -8,8 +8,14 @@ import CallToAction from "../components/CallToAction";
 import Footer from "../components/Footer";
 
 function HomePage() {
+  const topRef = useRef(null);
   const ctaRef = useRef(null);
   const rankingRef = useRef(null);
+
+  const topHandler = (event) => {
+    event.preventDefault();
+    topRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   const ctaHandler = (event) => {
     event.preventDefault();
@@ -17,7 +23,7 @@ function HomePage() {
   };
 
   const rankingHandler = (event) => {
-    event.preventDefault();
+    event && event.preventDefault();
     rankingRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -25,13 +31,13 @@ function HomePage() {
     <Fragment>
       <div id="overlays"></div>
       <Background>
-        <MainHeader onCta={ctaHandler} />
+        <MainHeader ref={topRef} onCta={ctaHandler} />
         <Hero onCta={ctaHandler} onRanking={rankingHandler} />
       </Background>
       <Ranking ref={rankingRef} />
       <Tournament />
-      <CallToAction ref={ctaRef} />
-      <Footer />
+      <CallToAction ref={ctaRef} onRanking={rankingHandler} />
+      <Footer onTop={topHandler} />
     </Fragment>
   );
 }

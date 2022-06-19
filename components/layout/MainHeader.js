@@ -1,13 +1,17 @@
-import Link from "next/link";
+import React from "react";
+
 import classes from "./MainHeader.module.css";
+
 import Button from "../ui/Button.js";
 import NavLink from "../ui/NavLink";
 
-function MainHeader(props) {
+const MainHeader = React.forwardRef((props, ref) => {
   return (
-    <header className={classes.container}>
+    <header ref={ref} className={classes.container}>
       <div>
-        <NavLink type="LOGO">Amigos Tenistas&trade;</NavLink>
+        <NavLink type="LOGO" href="#">
+          Amigos Tenistas&trade;
+        </NavLink>
       </div>
       <nav>
         <ul className={classes.list}>
@@ -30,6 +34,6 @@ function MainHeader(props) {
       </nav>
     </header>
   );
-}
+});
 
 export default MainHeader;

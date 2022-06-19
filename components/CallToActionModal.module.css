@@ -1,0 +1,15 @@
+.ctam {
+  margin: 5rem;
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.ctam p {
+  margin-bottom: 2rem;
+}
+
+.ctam p:last-child {
+  margin-bottom: 4rem;
+}

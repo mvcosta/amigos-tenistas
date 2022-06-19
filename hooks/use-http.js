@@ -8,7 +8,6 @@ const useHttp = () => {
     setisLoading(true);
     setError(null);
     try {
-      console.log(JSON.stringify(requestConfig.body));
       const fetchConfig = {
         method: requestConfig.method ? requestConfig.method : "GET",
         headers: requestConfig.headers ? requestConfig.headers : {},
@@ -20,7 +19,6 @@ const useHttp = () => {
         throw new Error("Request failed");
       }
       const data = await response.json();
-      console.log(data);
     } catch (error) {
       setError(error.message || "Something went wrong!");
     }

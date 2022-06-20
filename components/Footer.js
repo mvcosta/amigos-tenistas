@@ -14,7 +14,9 @@ function Footer(props) {
         <div>
           <ul className={classes.list}>
             <li>
-              <NavLink type="LOGO">Contato</NavLink>
+              <NavLink type="LOGO" href="#">
+                Contato
+              </NavLink>
             </li>
             <li>
               <NavLink
